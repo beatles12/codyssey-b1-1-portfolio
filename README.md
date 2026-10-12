@@ -49,7 +49,7 @@
 - 외부 API 요청이 실패하더라도 안내 메시지를 표시합니다.
 
 ## 배포
-GitHub Pages 배포 후 실제 사이트 주소를 추가합니다.
+[포트폴리오 바로가기](https://beatles12.github.io/codyssey-b1-1-portfolio/)
 
 ## 제작
 Codyssey B1-1 개인 포트폴리오 미션
