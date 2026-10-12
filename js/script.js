@@ -141,9 +141,9 @@ const getProjectVisual = name => {
     if (lowerName.includes("budget")) {
         return `
             <div class="project-visual mini-budget" aria-hidden="true">
-                <div class="mini-budget-head"><span>이번 달 잔액</span><strong>₩245,000</strong></div>
-                <div class="mini-money"><span>수입</span><b>+320,000</b></div>
-                <div class="mini-money expense"><span>지출</span><b>-75,000</b></div>
+                <div class="mini-budget-head"><span>${getWorkText("balance")}</span><strong>₩245,000</strong></div>
+                <div class="mini-money"><span>${getWorkText("income")}</span><b>+320,000</b></div>
+                <div class="mini-money expense"><span>${getWorkText("expense")}</span><b>-75,000</b></div>
                 <div class="mini-chart"><i></i><i></i><i></i><i></i><i></i></div>
             </div>
         `;
@@ -180,7 +180,7 @@ const getProjectVisual = name => {
         return `
             <div class="project-visual mini-quiz" aria-hidden="true">
                 <div class="quiz-head"><strong>Q.</strong><span>3 / 5</span></div>
-                <p>Python에서 리스트를 만드는 방법은?</p>
+                <p>${getWorkText("quizQuestion")}</p>
                 <div class="quiz-option active">
                     <b>A</b><span>[1, 2, 3]</span>
                 </div>
@@ -234,13 +234,13 @@ const createProjectCard = (project, index) => {
     const override = PROJECT_OVERRIDES[name] || {};
     const safeName = escapeHtml(name);
     const description = escapeHtml(
-        override.description || apiDescription || "GitHub에서 관리하고 있는 프로젝트입니다."
+        getLocalizedProjectDescription(name, override.description, apiDescription)
     );
     const tech = escapeHtml(override.tech || language || "Project");
     const url = escapeHtml(htmlUrl);
     const imagePath = PROJECT_SCREENSHOTS[name];
     const screenshot = imagePath
-        ? `<img class="project-screenshot" src="${escapeHtml(imagePath)}" alt="${safeName} 실제 실행 화면" loading="lazy">`
+        ? `<img class="project-screenshot" src="${escapeHtml(imagePath)}" alt="${safeName} ${getWorkText("screenshotAlt")}" loading="lazy">`
         : "";
 
     return `
@@ -253,7 +253,7 @@ const createProjectCard = (project, index) => {
             <span class="project-tech">${tech}</span>
             <a class="project-card-link" href="${url}" target="_blank"
                 rel="noopener noreferrer"
-                aria-label="${safeName} GitHub 저장소 열기">→</a>
+                aria-label="${safeName} ${getWorkText("openRepo")}">→</a>
         </article>
     `;
 };
@@ -281,12 +281,12 @@ const renderProjects = () => {
 
     if (!projects.length) {
         projectList.innerHTML = "";
-        projectStatus.textContent = "표시할 프로젝트가 없습니다.";
+        projectStatus.textContent = getWorkText("empty");
         return;
     }
 
     projectList.innerHTML = projects.map(createProjectCard).join("");
-    projectStatus.textContent = `${projects.length}개의 프로젝트를 표시하고 있습니다.`;
+    projectStatus.textContent = getWorkText("count", projects.length);
 };
 
 // GitHub 언어 필터와 프로젝트 기술 필터를 만든다.
@@ -296,14 +296,14 @@ const renderProjectFilters = () => {
     )];
 
     const filters = [
-        { value: "All", label: "All", hint: "전체 프로젝트" },
+        { value: "All", label: "All", hint: getWorkText("allHint") },
         ...languages.map(language => ({
             value: `lang:${language}`,
             label: language,
-            hint: "GitHub에서 확인한 언어"
+            hint: getWorkText("languageHint")
         })),
-        { value: "tech:Python", label: "Python", hint: "프로젝트 사용 기술" },
-        { value: "tech:Docker", label: "Docker", hint: "프로젝트 사용 기술" }
+        { value: "tech:Python", label: "Python", hint: getWorkText("technologyHint") },
+        { value: "tech:Docker", label: "Docker", hint: getWorkText("technologyHint") }
     ];
 
     projectFilters.innerHTML = "";
@@ -327,9 +327,9 @@ const renderProjectFilters = () => {
 };
 // 프로젝트 로딩 실패 상태를 출력한다.
 const renderProjectError = () => {
-    projectStatus.textContent = "프로젝트를 불러올 수 없습니다.";
+    projectStatus.textContent = getWorkText("error");
     projectList.innerHTML =
-        '<button id="project-retry" class="filter-button" type="button">다시 시도</button>';
+        `<button id="project-retry" class="filter-button" type="button">${getWorkText("retry")}</button>`;
 
     document
         .querySelector("#project-retry")
@@ -352,7 +352,7 @@ const sortPreferredProjects = projects => [...projects].sort((a, b) => {
 
 // GitHub API에서 프로젝트 목록을 가져온다.
 const loadProjects = async () => {
-    projectStatus.textContent = "GitHub 프로젝트를 불러오는 중입니다.";
+    projectStatus.textContent = getWorkText("loading");
     projectList.innerHTML = "";
     projectFilters.innerHTML = "";
 
@@ -373,7 +373,7 @@ const loadProjects = async () => {
         STATE.projects = sortPreferredProjects(usableProjects).slice(0, 4);
 
         if (!STATE.projects.length) {
-            projectStatus.textContent = "표시할 프로젝트가 없습니다.";
+            projectStatus.textContent = getWorkText("empty");
             return;
         }
 

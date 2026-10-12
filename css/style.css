@@ -1524,3 +1524,136 @@ section[id] {
         padding-top: 74px;
     }
 }
+/* KR/EN 언어 전환 버튼 */
+.language-toggle {
+    white-space: nowrap;
+}
+
+.language-toggle strong {
+    color: var(--lavender-deep);
+}
+
+.language-toggle span {
+    opacity: .6;
+}
+
+@media (max-width: 767px) {
+    .nav-actions {
+        gap: 4px;
+        align-items: center;
+    }
+
+    .nav-actions .theme-toggle {
+        padding: 0 8px;
+        font-size: .6rem;
+    }
+
+    .nav-actions .theme-toggle[style] {
+        margin-right: 0 !important;
+    }
+
+    .nav-actions .menu-toggle {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* 영문 타이포그래피 및 언어 버튼 디자인 */
+.nav-actions .language-toggle {
+    min-width: 49px;
+    background: var(--lavender-pale);
+    border-color: var(--lavender);
+    color: var(--lavender-deep);
+    font-weight: 700;
+}
+
+html[lang="en"] .hero h1,
+html[lang="en"] .section-heading h2,
+html[lang="en"] .project-heading h2,
+html[lang="en"] .contact-copy h2 {
+    font-family: Arial, "Helvetica Neue", sans-serif;
+    font-weight: 700;
+    line-height: 1.18;
+    letter-spacing: -.045em;
+}
+
+html[lang="en"] .section-heading h2,
+html[lang="en"] .project-heading h2,
+html[lang="en"] .contact-copy h2 {
+    font-size: clamp(1.95rem, 3.75vw, 3rem);
+}
+
+html[lang="en"] .hero-description {
+    font-size: .98rem;
+}
+
+html[lang="en"] .about-copy p {
+    font-size: .91rem;
+}
+
+html[lang="en"] .skill-card p {
+    font-size: .84rem;
+}
+
+html[lang="en"] .project-card > p {
+    font-size: .78rem;
+}
+
+html[lang="en"] .project-tools p {
+    font-size: .83rem;
+}
+
+@media (max-width: 767px) {
+    .nav-actions .language-toggle {
+        min-width: 38px;
+        padding: 0 7px;
+        font-size: .65rem;
+    }
+
+    html[lang="en"] .hero h1 {
+        font-size: clamp(2.3rem, 10vw, 2.75rem);
+    }
+
+    html[lang="en"] .section-heading h2,
+    html[lang="en"] .project-heading h2,
+    html[lang="en"] .contact-copy h2 {
+        font-size: clamp(1.8rem, 7.3vw, 2.3rem);
+    }
+}
+
+
+/* 언어 전환 버튼 텍스트 스타일 */
+.nav-actions .language-toggle {
+    min-width: auto;
+    padding: 0 8px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--lavender-deep);
+    font-size: .82rem;
+    font-weight: 700;
+}
+
+.nav-actions .language-toggle:hover {
+    transform: none;
+    border: none;
+    background: transparent;
+    color: var(--text);
+}
+
+@media (max-width: 767px) {
+    .nav-actions .language-toggle {
+        min-width: auto;
+        padding: 0 4px;
+        font-size: .72rem;
+    }
+}
+
+
+/* 영문 CONTACT 제목 아래 여백 */
+html[lang="en"] .contact-copy > small {
+    display: block;
+    margin-top: 12px;
+}
