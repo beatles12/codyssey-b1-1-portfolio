@@ -33,6 +33,20 @@
 - images/: 프로필 및 시루 일러스트
 - .gitignore: Git 관리 제외 파일 설정
 
+## 화면 미리보기
+
+### 데스크톱
+
+| 라이트모드 | 다크모드 |
+|:---:|:---:|
+| <img src="images/hero.png" width="450" alt="PC 라이트모드"> | <img src="images/hero_B.png" width="450" alt="PC 다크모드"> |
+
+### 모바일
+
+| 라이트모드 | 다크모드 |
+|:---:|:---:|
+| <img src="images/hero_M.png" width="200" alt="모바일 라이트모드"> | <img src="images/hero_M_B.png" width="200" alt="모바일 다크모드"> |
+
 ## 실행 방법
 1. VS Code에서 프로젝트 폴더를 엽니다.
 2. Live Server 확장 프로그램을 설치합니다.
