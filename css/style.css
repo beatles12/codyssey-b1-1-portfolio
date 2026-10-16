@@ -1075,6 +1075,10 @@ section {
         grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
     }
 
+    .project-list > .project-card:only-child {
+        max-width: 320px;
+    }
+
     .contact-row {
         grid-template-columns: 1fr 1fr;
     }
