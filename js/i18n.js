@@ -54,7 +54,7 @@ const LANGUAGE_CONTENT = {
         ko: "좋은 아이디어를<br>함께 이야기해요.",
         en: "Let's talk about<br>great ideas."
     },
-    ".footer a": {
+    ".footer a[href='#hero']": {
         ko: "Back to top ↑",
         en: "Back to top ↑"
     }
